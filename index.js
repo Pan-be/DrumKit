@@ -45,13 +45,27 @@ const playTheSound = (input) => {
 	}
 }
 
+const btnAnimation = (input) => {
+	const activeBtn = document.querySelector(`.${input}`)
+
+	activeBtn.classList.add("pressed")
+	setTimeout(() => {
+		activeBtn.classList.remove("pressed")
+	}, 100)
+}
+
+const play = (input) => {
+	playTheSound(input)
+	btnAnimation(input)
+}
+
 for (const btn of btns) {
 	btn.addEventListener("click", (e) => {
 		const btnInnerHTML = e.target.innerHTML
-		playTheSound(btnInnerHTML)
+		play(btnInnerHTML)
 	})
 }
 
 document.addEventListener("keydown", (e) => {
-	playTheSound(e.key)
+	play(e.key)
 })
